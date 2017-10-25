@@ -519,34 +519,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "base.py",
-			"settings":
-			{
-				"buffer_size": 2206,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "troca.py",
-			"settings":
-			{
-				"buffer_size": 914,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "import pymysql\n\nconn = pymysql.connect(host='srvhomolog.cipec.net', port=3306, user='root',\n                       passwd='beleza', db='homocipec')\nconn.show_warnings()\ncur = conn.cursor()\n\ncur.execute(\n    \"select pecas.descricao, pecas.codigo from pecas where pecas.sr_deleted != 'T' and codigo > 023600\")\npecas = cur.fetchall()\n\nfor peca in pecas:\n    if peca[0] == None:\n        continue\n\n    palavras = peca[0].split()\n    # print(peca[1])\n\n    for palavra in palavras:\n        palavra = palavra.replace('\"', '')\n        palavra = palavra.replace(\"'\", \"\")\n\n        # print('\\t',palavra)\n\n        sql = \"select incidencia from palavras where palavras.origem=%s\"\n        cur.execute(sql, palavra)\n        result = cur.fetchone()\n\n        if result == None:\n            incidencia = 0\n        else:\n            incidencia = int(result[0])\n\n        if incidencia == 0:\n            sql = \"INSERT INTO palavras (`incidencia`, `origem`, `sr_deleted`) VALUES (%s, '%s', '')\"\n        else:\n            sql = \"UPDATE palavras SET `incidencia` = %s WHERE `origem` = '%s'\"\n\n        incidencia = incidencia + 1\n        print(peca[1], palavra, sql % (incidencia, palavra))\n        cur.execute(sql % (incidencia, palavra))\n        conn.commit()\n",
-			"file": "gera_base.py",
-			"file_size": 1195,
-			"file_write_time": 131529017970229878,
-			"settings":
-			{
-				"buffer_size": 1235,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -1108,6 +1080,8 @@
 	],
 	"file_history":
 	[
+		"/home/esbaptista/works/python/higiene_cadastro/base.py",
+		"/home/esbaptista/works/python/higiene_cadastro/gera_base.py",
 		"/home/esbaptista/works/python/higiene_cadastro/README.md",
 		"/home/esbaptista/.config/sublime-text-3/Packages/FuzzyFilePath/FuzzyFilePath.sublime-settings",
 		"/home/esbaptista/works/cipec/impblo.prg",
@@ -1233,9 +1207,7 @@
 		"/home/elton/works/cipec/planejamento.prg",
 		"/home/elton/works/libgeral/httpcln.prg",
 		"/home/elton/works/cipec/qg_nfe_valida.prg",
-		"/home/elton/works/cipec/mae1.prg",
-		"/home/elton/works/cipec/bloqueados.prg",
-		"/home/elton/works/cipec/conexp.prg"
+		"/home/elton/works/cipec/mae1.prg"
 	],
 	"find":
 	{
@@ -1270,119 +1242,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "base.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2206,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								403,
-								403
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".",
-									"selector": "source.python - string - constant.numeric"
-								}
-							],
-							"rulers":
-							[
-								25.9,
-								26.2
-							],
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "troca.py",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 914,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								914,
-								16
-							]
-						],
-						"settings":
-						{
-							"rulers":
-							[
-							],
-							"syntax": "Packages/Python/Python.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "gera_base.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1235,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1234,
-								332
-							]
-						],
-						"settings":
-						{
-							"rulers":
-							[
-							],
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -2006,7 +1867,7 @@
 	"show_minimap": false,
 	"show_open_files": true,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 220.0,
 	"status_bar_visible": true,
 	"template_settings":
