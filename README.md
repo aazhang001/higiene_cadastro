@@ -1,4 +1,4 @@
-Rotinas para limpar cadastros, ou seja, tornar descrições mais legiveis, remover erros (TODO), etc
+Rotinas para limpar cadastros, ou seja, tornar descrições mais legiveis, remover registros com erros (TODO), etc
 
 ## Installation
 TODO: Describe the installation process
